@@ -128,8 +128,6 @@ void GameToolbox::createCorners(ax::Node* self, bool topLeft, bool topRight, boo
 	}
 }
 
-
-
 void GameToolbox::alignItemsInColumnsWithPadding(ax::Menu* menu,
 												 const int rows,
 												 const int x_padding,

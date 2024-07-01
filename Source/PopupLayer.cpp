@@ -35,7 +35,6 @@ USING_NS_AX;
 
 void PopupLayer::show(Transitions transitions)
 {
-	//robtops system to add to highest z
 	auto scene = Director::getInstance()->getRunningScene();
 	int z = GameToolbox::getHighestChildZ(scene);
 	if (z >= INT_MAX - 1)

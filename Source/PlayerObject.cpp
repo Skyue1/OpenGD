@@ -67,6 +67,19 @@ void PlayerObject::playDeathEffect()
 	AudioEngine::play2d("explode_11.ogg", false, 0.1f);
 	dragEffect1->pauseEmissions();
 	getPlayLayer()->unscheduleUpdate();
+
+	auto explodeEffect = ax::ParticleSystemQuad::create("explodeEffect.plist");
+	explodeEffect->setPosition(this->getPosition());
+	gameLayer->addChild(explodeEffect, 10);
+
+	float duration = explodeEffect->getDuration() + explodeEffect->getLife() + explodeEffect->getLifeVar();
+	gameLayer->runAction(Sequence::create(
+		DelayTime::create(duration),
+		CallFunc::create([explodeEffect]() {
+			explodeEffect->removeFromParent();
+		}),
+		nullptr
+	));
 }
 
 bool PlayerObject::init(int playerFrame, Layer* gameLayer_)
